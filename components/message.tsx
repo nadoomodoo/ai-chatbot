@@ -185,27 +185,6 @@ const PurePreviewMessage = ({
                 }
               }
 
-              if (type === 'tool-getWeather') {
-                const { toolCallId, state } = part;
-
-                return (
-                  <Tool key={toolCallId} defaultOpen={true}>
-                    <ToolHeader type="tool-getWeather" state={state} />
-                    <ToolContent>
-                      {state === 'input-available' && (
-                        <ToolInput input={part.input} />
-                      )}
-                      {state === 'output-available' && (
-                        <ToolOutput
-                          output={<Weather weatherAtLocation={part.output} />}
-                          errorText={undefined}
-                        />
-                      )}
-                    </ToolContent>
-                  </Tool>
-                );
-              }
-
               if (type === 'tool-createDocument') {
                 const { toolCallId } = part;
 
@@ -215,7 +194,7 @@ const PurePreviewMessage = ({
                       key={toolCallId}
                       className="p-4 text-red-500 bg-red-50 rounded-lg border border-red-200 dark:bg-red-950/50"
                     >
-                      Error creating document: {String(part.output.error)}
+                      문서 생성에 실패했습니다: {String(part.output.error)}
                     </div>
                   );
                 }
@@ -238,7 +217,7 @@ const PurePreviewMessage = ({
                       key={toolCallId}
                       className="p-4 text-red-500 bg-red-50 rounded-lg border border-red-200 dark:bg-red-950/50"
                     >
-                      Error updating document: {String(part.output.error)}
+                      문서 업데이트에 실패했습니다: {String(part.output.error)}
                     </div>
                   );
                 }
@@ -251,39 +230,6 @@ const PurePreviewMessage = ({
                       args={{ ...part.output, isUpdate: true }}
                     />
                   </div>
-                );
-              }
-
-              if (type === 'tool-requestSuggestions') {
-                const { toolCallId, state } = part;
-
-                return (
-                  <Tool key={toolCallId} defaultOpen={true}>
-                    <ToolHeader type="tool-requestSuggestions" state={state} />
-                    <ToolContent>
-                      {state === 'input-available' && (
-                        <ToolInput input={part.input} />
-                      )}
-                      {state === 'output-available' && (
-                        <ToolOutput
-                          output={
-                            'error' in part.output ? (
-                              <div className="p-2 text-red-500 rounded border">
-                                Error: {String(part.output.error)}
-                              </div>
-                            ) : (
-                              <DocumentToolResult
-                                type="request-suggestions"
-                                result={part.output}
-                                isReadonly={isReadonly}
-                              />
-                            )
-                          }
-                          errorText={undefined}
-                        />
-                      )}
-                    </ToolContent>
-                  </Tool>
                 );
               }
             })}

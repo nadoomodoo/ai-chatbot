@@ -18,8 +18,9 @@ export const updateDocument = ({ session, dataStream }: UpdateDocumentProps) =>
       description: z
         .string()
         .describe('The description of changes that need to be made'),
+      content: z.string().optional().describe('Optional new content for the document'),
     }),
-    execute: async ({ id, description }) => {
+    execute: async ({ id, description, content }) => {
       const document = await getDocumentById({ id });
 
       if (!document) {
@@ -46,6 +47,7 @@ export const updateDocument = ({ session, dataStream }: UpdateDocumentProps) =>
       await documentHandler.onUpdateDocument({
         document,
         description,
+        content,
         dataStream,
         session,
       });
