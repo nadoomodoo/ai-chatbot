@@ -25,9 +25,9 @@ test.describe
       }
 
       expect(chain).toEqual([
-        'http://localhost:3000/',
-        'http://localhost:3000/api/auth/guest?redirectUrl=http%3A%2F%2Flocalhost%3A3000%2F',
-        'http://localhost:3000/',
+        'http://localhost:3700/',
+        'http://localhost:3700/api/auth/guest?redirectUrl=http%3A%2F%2Flocalhost%3A3700%2F',
+        'http://localhost:3700/',
       ]);
     });
 
@@ -66,7 +66,7 @@ test.describe
         request = request.redirectedFrom();
       }
 
-      expect(chain).toEqual(['http://localhost:3000/']);
+      expect(chain).toEqual(['http://localhost:3700/']);
     });
 
     test('Allow navigating to /login as guest user', async ({ page }) => {

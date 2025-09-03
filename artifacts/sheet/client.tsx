@@ -9,6 +9,7 @@ import {
 import { SpreadsheetEditor } from '@/components/sheet-editor';
 import { parse, unparse } from 'papaparse';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 type Metadata = any;
 
@@ -92,7 +93,12 @@ export const sheetArtifact = new Artifact<'sheet', Metadata>({
   toolbar: [
     {
       description: 'Format and clean data',
-      icon: <SparklesIcon />,
+      icon: <Image
+        src="/favicon.ico"
+        alt="AI"
+        width={32}
+        height={32}
+      />,
       onClick: ({ sendMessage }) => {
         sendMessage({
           role: 'user',

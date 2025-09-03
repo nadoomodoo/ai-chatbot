@@ -1,0 +1,37 @@
+version: '3.0'
+
+services:
+  postgres:
+    image: postgres:14.4
+    container_name: nadoo-chatbot-postgres-dev
+    restart: always
+    pull_policy: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: nadoo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: G7r!9vXq2@LpZk1w
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    networks:
+      - nadoo_ai_dev
+
+  redis:
+    image: redis:7.0.7
+    restart: always
+    pull_policy: always
+    ports:
+      - '6379:6379'
+    container_name: nadoo-ai-redis-dev
+    volumes:
+      - redis_data_dev:/data
+    networks:
+      - nadoo_ai_dev
+
+volumes:
+  postgres_data_dev:
+  redis_data_dev:
+
+networks:
+  nadoo_ai_dev:

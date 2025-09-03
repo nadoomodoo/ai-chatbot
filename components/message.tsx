@@ -27,6 +27,7 @@ import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import type { ChatMessage } from '@/lib/types';
 import { useDataStream } from './data-stream-provider';
+import Image from 'next/image';
 
 // Type narrowing is handled by TypeScript's control flow analysis
 // The AI SDK provides proper discriminated unions for tool calls
@@ -78,8 +79,13 @@ const PurePreviewMessage = ({
           })}
         >
           {message.role === 'assistant' && (
-            <div className="flex justify-center items-center mt-1 rounded-full ring-1 size-8 shrink-0 ring-border bg-background">
-              <SparklesIcon size={14} />
+            <div>
+              <Image
+                src="/favicon.ico"
+                alt="AI"
+                width={32}
+                height={32}
+              />
             </div>
           )}
 
@@ -324,8 +330,13 @@ export const ThinkingMessage = () => {
       data-role={role}
     >
       <div className="flex items-start gap-3 justify-start -ml-3">
-        <div className="flex justify-center items-center mt-1 rounded-full ring-1 size-8 shrink-0 ring-border bg-background">
-          <SparklesIcon size={14} />
+        <div className="translate-y-px">
+          <Image
+            src="/favicon.ico"
+            alt="AI"
+            width={32}
+            height={32}
+          />
         </div>
 
         <div className="flex flex-col gap-4 w-full">

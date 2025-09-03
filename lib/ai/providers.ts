@@ -11,24 +11,42 @@ import {
   titleModel,
 } from './models.test';
 import { isTestEnvironment } from '../constants';
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+
+// 로컬 LLM 설정
+export const localLLM = createOpenAICompatible({
+  name: 'localLLM',
+  baseURL: process.env.LLM_BASE_URL || 'http://localhost:11434/v1',
+});
+
+const modelName = process.env.LLM_MODEL || 'qwen3:1.7b';
 
 export const myProvider = isTestEnvironment
   ? customProvider({
       languageModels: {
-        'chat-model': chatModel,
-        'chat-model-reasoning': reasoningModel,
-        'title-model': titleModel,
-        'artifact-model': artifactModel,
+        'chat-model': localLLM(modelName),
+        'chat-model-reasoning': localLLM(modelName),
+        'title-model': localLLM(modelName),
+        'artifact-model': localLLM(modelName),
       },
     })
   : customProvider({
       languageModels: {
-        'chat-model': gateway.languageModel('xai/grok-2-vision-1212'),
-        'chat-model-reasoning': wrapLanguageModel({
-          model: gateway.languageModel('xai/grok-3-mini-beta'),
+        'chat-model': wrapLanguageModel({
+          model: localLLM(modelName),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
-        'title-model': gateway.languageModel('xai/grok-2-1212'),
-        'artifact-model': gateway.languageModel('xai/grok-2-1212'),
+        'chat-model-reasoning': wrapLanguageModel({
+          model: localLLM(modelName),
+          middleware: extractReasoningMiddleware({ tagName: 'think' }),
+        }),
+        'title-model': wrapLanguageModel({
+          model: localLLM(modelName),
+          middleware: extractReasoningMiddleware({ tagName: 'think' }),
+        }),
+        'artifact-model': wrapLanguageModel({
+          model: localLLM(modelName),
+          middleware: extractReasoningMiddleware({ tagName: 'think' }),
+        }),
       },
     });
