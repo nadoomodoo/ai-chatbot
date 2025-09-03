@@ -80,35 +80,35 @@ export function getMessageByErrorCode(errorCode: ErrorCode): string {
 
   switch (errorCode) {
     case 'bad_request:api':
-      return "The request couldn't be processed. Please check your input and try again.";
+      return "요청을 처리할 수 없습니다. 입력을 확인하고 다시 시도해 주세요.";
 
     case 'unauthorized:auth':
-      return 'You need to sign in before continuing.';
+      return '계속하려면 로그인해야 합니다.';
     case 'forbidden:auth':
-      return 'Your account does not have access to this feature.';
+      return '귀하의 계정은 이 기능에 접근할 수 없습니다.';
 
     case 'rate_limit:chat':
-      return 'You have exceeded your maximum number of messages for the day. Please try again later.';
+      return '오늘 하루 최대 메시지 수를 초과했습니다. 나중에 다시 시도해 주세요.';
     case 'not_found:chat':
-      return 'The requested chat was not found. Please check the chat ID and try again.';
+      return '요청한 채팅을 찾을 수 없습니다. 채팅 ID를 확인하고 다시 시도해 주세요.';
     case 'forbidden:chat':
-      return 'This chat belongs to another user. Please check the chat ID and try again.';
+      return '이 채팅은 다른 사용자의 것입니다. 채팅 ID를 확인하고 다시 시도해 주세요.';
     case 'unauthorized:chat':
-      return 'You need to sign in to view this chat. Please sign in and try again.';
+      return '이 채팅을 보려면 로그인해야 합니다. 로그인 후 다시 시도해 주세요.';
     case 'offline:chat':
-      return "We're having trouble sending your message. Please check your internet connection and try again.";
+      return "메시지 전송에 문제가 있습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.";
 
     case 'not_found:document':
-      return 'The requested document was not found. Please check the document ID and try again.';
+      return '요청한 문서를 찾을 수 없습니다. 문서 ID를 확인하고 다시 시도해 주세요.';
     case 'forbidden:document':
-      return 'This document belongs to another user. Please check the document ID and try again.';
+      return '이 문서는 다른 사용자의 것입니다. 문서 ID를 확인하고 다시 시도해 주세요.';
     case 'unauthorized:document':
-      return 'You need to sign in to view this document. Please sign in and try again.';
+      return '이 문서를 보려면 로그인해야 합니다. 로그인 후 다시 시도해 주세요.';
     case 'bad_request:document':
-      return 'The request to create or update the document was invalid. Please check your input and try again.';
+      return '문서 생성 또는 업데이트 요청이 잘못되었습니다. 입력을 확인하고 다시 시도해 주세요.';
 
     default:
-      return 'Something went wrong. Please try again later.';
+      return '문제가 발생했습니다. 나중에 다시 시도해 주세요.';
   }
 }
 

@@ -70,7 +70,7 @@ export function MessageEditor({
             setMode('view');
           }}
         >
-          Cancel
+          취소
         </Button>
         <Button
           data-testid="message-editor-send-button"
@@ -103,7 +103,7 @@ export function MessageEditor({
             regenerate();
           }}
         >
-          {isSubmitting ? 'Sending...' : 'Send'}
+          {isSubmitting ? '전송 중...' : '전송'}
         </Button>
       </div>
     </div>

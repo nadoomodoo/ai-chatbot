@@ -146,7 +146,7 @@ const PurePreviewMessage = ({
                               <PencilEditIcon />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Edit message</TooltipContent>
+                          <TooltipContent>메시지 수정</TooltipContent>
                         </Tooltip>
                       )}
 
@@ -341,7 +341,7 @@ export const ThinkingMessage = () => {
 
         <div className="flex flex-col gap-4 w-full">
           <MessageContent className="bg-transparent -ml-4">
-            <div className="text-muted-foreground">Hmm...</div>
+            <div className="text-muted-foreground">AI가 답변을 생각 중입니다...</div>
           </MessageContent>
         </div>
       </div>
